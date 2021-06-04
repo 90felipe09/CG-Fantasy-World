@@ -9,8 +9,10 @@ public class GridView : MonoBehaviour
     [SerializeField] private GameObject tilePrefab;
     [SerializeField] private List<GameObject> tiles;
 
-    [SerializeField] private Shader outlinedShader;
-    [SerializeField] private Shader defaultShader;
+    private bool isActive;
+
+    [SerializeField] private Material outlinedMaterial;
+    [SerializeField] private Material defaultMaterial;
 
     private GridModel gridModel;
 
@@ -22,7 +24,7 @@ public class GridView : MonoBehaviour
 
     void Update()
     {
-        
+        handleTileControl();
     }
 
     private void mountGrid()
@@ -40,19 +42,29 @@ public class GridView : MonoBehaviour
         gridFloor = floor;
     }
 
-    public void deactivateShader()
+    public void deactivateGrid()
     {
+        isActive = false;
         for (int tileIndex = 0; tileIndex < tiles.Count; tileIndex++)
         {
-            tiles[tileIndex].GetComponent<Renderer>().material.shader = defaultShader;
+            tiles[tileIndex].GetComponent<TileView>().setDefaultTileMaterial(defaultMaterial);
         }
     }
 
-    public void activateShader()
+    public void activateGrid()
+    {
+        isActive = true;
+        for (int tileIndex = 0; tileIndex < tiles.Count; tileIndex++)
+        {
+            tiles[tileIndex].GetComponent<TileView>().setDefaultTileMaterial(outlinedMaterial);
+        }
+    }
+
+    public void handleTileControl()
     {
         for (int tileIndex = 0; tileIndex < tiles.Count; tileIndex++)
         {
-            tiles[tileIndex].GetComponent<Renderer>().material.shader = outlinedShader;
+            tiles[tileIndex].GetComponent<TileView>().handleMouseHover(isActive);
         }
     }
 }

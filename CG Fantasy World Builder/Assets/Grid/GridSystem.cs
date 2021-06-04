@@ -9,7 +9,7 @@ public class GridSystem : MonoBehaviour
     [SerializeField] private List<GameObject> gridFloors;
     [SerializeField] private int floorsAmount = 3;
 
-    private static float floorHeight = 3.0f;
+    [SerializeField] private float floorHeight = 3.0f;
 
     private void Start()
     {
@@ -41,16 +41,16 @@ public class GridSystem : MonoBehaviour
             if (floorIndex > floorToShow)
             {
                 gridFloors[floorIndex].SetActive(false);
-                gridFloors[floorIndex].GetComponent<GridView>().deactivateShader();
+                gridFloors[floorIndex].GetComponent<GridView>().deactivateGrid();
             }
             else
             {
                 gridFloors[floorIndex].SetActive(true);
-                gridFloors[floorIndex].GetComponent<GridView>().deactivateShader();
+                gridFloors[floorIndex].GetComponent<GridView>().deactivateGrid();
             }
         }
 
-        gridFloors[floorToShow].GetComponent<GridView>().activateShader();
+        gridFloors[floorToShow].GetComponent<GridView>().activateGrid();
 
         floorShowing = floorToShow;
     }

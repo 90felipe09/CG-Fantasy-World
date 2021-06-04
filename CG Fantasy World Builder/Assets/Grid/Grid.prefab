@@ -47,5 +47,5 @@ MonoBehaviour:
   gridFloor: 0
   tilePrefab: {fileID: 4234735357054066837, guid: 6e74dd75c0fc66a41b4dfbe63c6bf05d, type: 3}
   tiles: []
-  outlinedShader: {fileID: 4800000, guid: 2a50bdd216113794991fc00c3b05e1d2, type: 3}
-  defaultShader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  outlinedMaterial: {fileID: 2100000, guid: a86e14deb364e1e49bb5948c5b0889fa, type: 2}
+  defaultMaterial: {fileID: 2100000, guid: 6d728a9e83114b9449de6d9a31b5a506, type: 2}
