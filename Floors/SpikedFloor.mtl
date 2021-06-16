@@ -1,0 +1,111 @@
+# Blender MTL File: 'SpikedFloor.blend'
+# Material Count: 9
+
+newmtl GrassFloor
+Ns 323.999994
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.068182 0.068182 0.068182
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump Textures\\grass\\Grass001_1K_Normal.jpg
+map_Ns Textures\\grass\\Grass001_1K_Roughness.jpg
+
+newmtl Ground1Floor
+Ns 323.999994
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.068182 0.068182 0.068182
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump Textures\\ground1\\Ground037_1K_Normal.jpg
+map_Ns Textures\\ground1\\Ground037_1K_Roughness.jpg
+
+newmtl Metal
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump E:\\Modelos\\CG-Fantasy-World\\Props\\Textures\\metal3\\Metal032_1K_Normal.jpg
+map_Kd E:\\Modelos\\CG-Fantasy-World\\Props\\Textures\\metal3\\Metal032_1K_Color.jpg
+map_Ns E:\\Modelos\\CG-Fantasy-World\\Props\\Textures\\metal3\\Metal032_1K_Roughness.jpg
+
+newmtl Moss
+Ns 323.999994
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.068182 0.068182 0.068182
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump Textures\\pave\\PavingStones054_1K_Normal.jpg
+map_Ns Textures\\pave\\PavingStones054_1K_Roughness.jpg
+
+newmtl Rock1
+Ns 323.999994
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.068182 0.068182 0.068182
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump Textures\\rock1\\Rock029_1K_Normal.jpg
+map_Ns Textures\\rock1\\Rock029_1K_Roughness.jpg
+
+newmtl Rock2
+Ns 323.999994
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.068182 0.068182 0.068182
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump Textures\\rock2\\Rock030_1K_Normal.jpg
+map_Ns Textures\\rock2\\Rock030_1K_Roughness.jpg
+
+newmtl Tiles1
+Ns 323.999994
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.068182 0.068182 0.068182
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump Textures\\tiles1\\Tiles093_1K_Normal.jpg
+map_Ns Textures\\tiles1\\Tiles093_1K_Roughness.jpg
+
+newmtl Tiles2
+Ns 323.999994
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.068182 0.068182 0.068182
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump Textures\\tiles2\\Tiles098_1K_Normal.jpg
+map_Ns Textures\\tiles2\\Tiles098_1K_Roughness.jpg
+
+newmtl WoodenFloor
+Ns 323.999994
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.068182 0.068182 0.068182
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump Textures\\woodfloor\\WoodFloor041_1K_Normal.jpg
+map_Ns Textures\\woodfloor\\WoodFloor041_1K_Roughness.jpg
