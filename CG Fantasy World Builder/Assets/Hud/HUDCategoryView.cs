@@ -12,8 +12,6 @@ public class HUDCategoryView : MonoBehaviour
 
     [SerializeField] private UserController userController;
 
-
-
     private enum PalletesOptionsEnums { Floors = 0, Walls = 1, Props = 2 };
     private int numberOfPalletes = 3;
 

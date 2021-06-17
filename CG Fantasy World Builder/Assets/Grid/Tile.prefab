@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -3272681013683896162}
   m_Layer: 0
   m_Name: Tile
-  m_TagString: Untagged
+  m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108,5 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c303bb7bd9ab00d4ca2b37b3d8a3dcdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentDefaultMaterial: {fileID: 2100000, guid: a86e14deb364e1e49bb5948c5b0889fa, type: 2}
   defaultTileMaterial: {fileID: 2100000, guid: a86e14deb364e1e49bb5948c5b0889fa, type: 2}
+  inactiveTileMaterial: {fileID: 2100000, guid: 6d728a9e83114b9449de6d9a31b5a506, type: 2}
   hoveredTileMaterial: {fileID: 2100000, guid: 64fe891d492807449a2efd1d042425c2, type: 2}

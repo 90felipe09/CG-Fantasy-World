@@ -31,14 +31,24 @@ public class UserController : MonoBehaviour
         this.propsToPut = propsToPut;
     }
 
-    void Start()
+    public EditModeEnum getCurrentEditMode()
     {
-        
+        return currentEditMode;
     }
 
-    // Update is called once per frame
-    void Update()
+    public GameObject getFloorToPut()
     {
-        
+        return floorToPut;
     }
+
+    public GameObject getWallToPut()
+    {
+        return wallToPut;
+    }
+
+    public GameObject getPropsToPut()
+    {
+        return propsToPut;
+    }
+
 }

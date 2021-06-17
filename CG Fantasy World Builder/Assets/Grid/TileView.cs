@@ -6,13 +6,31 @@ public class TileView : MonoBehaviour
 {
     [SerializeField] private TileModel tileModel;
 
+    [SerializeField] private Material currentDefaultMaterial;
+
     [SerializeField] private Material defaultTileMaterial;
+    [SerializeField] private Material inactiveTileMaterial;
     [SerializeField] private Material hoveredTileMaterial;
+
+    [SerializeField] private GameObject floorOccupying;
 
     // Start is called before the first frame update
     public void Start()
     {
         
+    }
+
+    public void occupyTileWithFloor(GameObject floorToPut)
+    {
+        if (floorOccupying == null)
+        {
+            floorOccupying = Instantiate(floorToPut, transform);
+        }
+        else
+        {
+            Destroy(floorOccupying);
+            floorOccupying = Instantiate(floorToPut, transform);
+        }
     }
 
     // Update is called once per frame
@@ -26,30 +44,27 @@ public class TileView : MonoBehaviour
         this.tileModel = tileModel;
     }
 
-    public void setDefaultTileMaterial(Material newDefaultMaterial)
+    public void setTileActivation(bool newActivation)
     {
-        this.defaultTileMaterial = newDefaultMaterial;
-    }
-
-    public void handleMouseHover(bool hoveringIsEnabled)
-    {
-        RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit))
+        if (newActivation)
         {
-            if (hit.transform == transform && hoveringIsEnabled)
-            {
-                GetComponent<Renderer>().material = hoveredTileMaterial;
-            }
-            else
-            {
-                GetComponent<Renderer>().material = defaultTileMaterial;
-            }
+            this.currentDefaultMaterial = defaultTileMaterial;
         }
         else
         {
-            GetComponent<Renderer>().material = defaultTileMaterial;
+            this.currentDefaultMaterial = inactiveTileMaterial;
         }
     }
 
+    public void hoverTile(bool isHovering)
+    {
+        if (isHovering)
+        {
+            GetComponent<Renderer>().material = hoveredTileMaterial;
+        }
+        else
+        {
+            GetComponent<Renderer>().material = currentDefaultMaterial;
+        }
+    }
 }
