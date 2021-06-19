@@ -43,9 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d7f2dfeb45ec2a489883f75cc841d23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridSize: 50
+  gridSize: 30
   gridFloor: 0
   tilePrefab: {fileID: 4234735357054066837, guid: 6e74dd75c0fc66a41b4dfbe63c6bf05d, type: 3}
   tiles: []
   outlinedMaterial: {fileID: 2100000, guid: a86e14deb364e1e49bb5948c5b0889fa, type: 2}
   defaultMaterial: {fileID: 2100000, guid: 6d728a9e83114b9449de6d9a31b5a506, type: 2}
+  userController: {fileID: 0}

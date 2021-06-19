@@ -22,6 +22,7 @@ public class GridSystem : MonoBehaviour
     private void Update()
     {
         handleFloorNavigation();
+        handlePlacingRotation();
     }
 
     private void instantiateGrids()
@@ -74,6 +75,19 @@ public class GridSystem : MonoBehaviour
             {
                 showGrid(floorShowing + 1);
             }
+        }
+    }
+
+    private void handlePlacingRotation()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            userController.increasePlacingDirection();
+        }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            userController.decreasePlacingDirection();
         }
     }
 }

@@ -47,6 +47,16 @@ public class GridView : MonoBehaviour
         }
     }
 
+    public void placeWall()
+    {
+        if (userController.getCurrentEditMode() == UserController.EditModeEnum.wall)
+        {
+            GameObject wallToPut = userController.getWallToPut();
+            if (wallToPut)
+                hoveredTile.gameObject.GetComponent<TileView>().occupyTileWithWall(wallToPut, 4, userController.getCurrentPlacingDirection());
+        }
+    }
+
     private void mountGrid()
     {
         for (int tileIndex = 0; tileIndex < gridModel.layout.Count; tileIndex++)
@@ -55,6 +65,7 @@ public class GridView : MonoBehaviour
             newTile.transform.localPosition = gridModel.layout[tileIndex].getPosition();
             tiles.Add(newTile);
         }
+        setAdjacentTiles();
     }
 
     public void setGridFloor(int floor)
@@ -82,6 +93,20 @@ public class GridView : MonoBehaviour
         }
     }
 
+    public void setAdjacentTiles()
+    {
+        for (int tileIndex = 0; tileIndex < tiles.Count; tileIndex++)
+        {
+
+            TileView tile = tiles[tileIndex].GetComponent<TileView>();
+            List<TileView> tilesSurround = new List<TileView>() {
+                getAdjacentTileOrNull(tileIndex, tileIndex - gridSize, gridSize, false),
+                getAdjacentTileOrNull(tileIndex, tileIndex -1, gridSize, true),
+                getAdjacentTileOrNull(tileIndex, tileIndex +1, gridSize, true),
+                getAdjacentTileOrNull(tileIndex, tileIndex + gridSize, gridSize, false),};
+            tile.setAdjacentsTiles(tilesSurround);
+        }
+    }
     public void handleTileControl()
     {
         if (isActive)
@@ -100,9 +125,41 @@ public class GridView : MonoBehaviour
                     hoveredTile.gameObject.GetComponent<TileView>().hoverTile(true);
 
                     if (Input.GetMouseButton(0))
+                    {
                         putFloor();
+                        placeWall();
+                    }
+
                 }
             }
+        }
+    }
+
+    private TileView getAdjacentTileOrNull(int tileIndex, int adjacentIndex, int size, bool sameLine)
+    {
+        try
+        {
+            int adjacentLine = adjacentIndex / size;
+            int tileLine = tileIndex / size;
+            int adjacentColumn = adjacentIndex % size;
+            int tileColumn = tileIndex % size;
+            if (sameLine && tileLine != adjacentLine)
+            {
+                return null;
+            }
+            if (!sameLine && tileColumn != adjacentColumn)
+            {
+                return null;
+            }
+            if(adjacentIndex < 0 || adjacentIndex >= size*size)
+            {
+                return null;
+            }
+            return tiles[adjacentIndex].GetComponent<TileView>();
+        }
+        catch (System.ArgumentOutOfRangeException)
+        {
+            return null;
         }
     }
 }
