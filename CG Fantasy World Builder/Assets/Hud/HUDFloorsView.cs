@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class HUDFloorsView : MonoBehaviour
 {
     [SerializeField] private List<GameObject> options;
-    [SerializeField] private List<Texture> floorMaterialsOptions;
+    [SerializeField] private List<Material> floorMaterialsOptions;
     [SerializeField] private GameObject floorPrefab;
     [SerializeField] private GameObject categoryHud;
     [SerializeField] private GameObject buttonPrefab;
@@ -29,14 +29,14 @@ public class HUDFloorsView : MonoBehaviour
         addReturnToCategoriesOption();
     }
 
-    private void selectFloorToPut(Texture material)
+    private void selectFloorToPut(Material material)
     {
-        GameObject floorToPut = Instantiate(floorPrefab);
-        floorToPut.GetComponent<Material>().SetTexture(material.name, material);
+        GameObject floorToPut = floorPrefab;
+        floorToPut.GetComponent<Renderer>().material = material;
         userController.setFloorToPut(floorToPut);
     }
 
-    private void addOption(Texture optionToAdd)
+    private void addOption(Material optionToAdd)
     {
         GameObject newButton = Instantiate(buttonPrefab, transform);
         newButton.transform.GetChild(0).GetComponent<Text>().text = optionToAdd.name;

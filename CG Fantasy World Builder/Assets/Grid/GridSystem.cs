@@ -11,6 +11,8 @@ public class GridSystem : MonoBehaviour
 
     [SerializeField] private float floorHeight = 3.0f;
 
+    [SerializeField] private UserController userController;
+
     private void Start()
     {
         instantiateGrids();
@@ -29,6 +31,7 @@ public class GridSystem : MonoBehaviour
             GameObject grid = Instantiate(gridPrefab, transform);
             grid.transform.position += Vector3.up * floorHeight * floorIndex;
             grid.GetComponent<GridView>().setGridFloor(floorIndex);
+            grid.GetComponent<GridView>().setUserController(userController);
             grid.SetActive(false);
             gridFloors.Add(grid);
         }

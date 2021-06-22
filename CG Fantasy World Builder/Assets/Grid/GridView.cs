@@ -14,7 +14,11 @@ public class GridView : MonoBehaviour
     [SerializeField] private Material outlinedMaterial;
     [SerializeField] private Material defaultMaterial;
 
+    private Transform hoveredTile;
+
     private GridModel gridModel;
+
+    [SerializeField] private UserController userController;
 
     void Start()
     {
@@ -22,9 +26,25 @@ public class GridView : MonoBehaviour
         mountGrid();
     }
 
+
+    public void setUserController(UserController userController)
+    {
+        this.userController = userController;
+    }
+
     void Update()
     {
         handleTileControl();
+    }
+
+    public void putFloor()
+    {   
+        if (userController.getCurrentEditMode() == UserController.EditModeEnum.floor)
+        {
+            GameObject floorToPut = userController.getFloorToPut();
+            if (floorToPut)
+                hoveredTile.gameObject.GetComponent<TileView>().occupyTileWithFloor(floorToPut);
+        }
     }
 
     private void mountGrid()
@@ -47,7 +67,8 @@ public class GridView : MonoBehaviour
         isActive = false;
         for (int tileIndex = 0; tileIndex < tiles.Count; tileIndex++)
         {
-            tiles[tileIndex].GetComponent<TileView>().setDefaultTileMaterial(defaultMaterial);
+            tiles[tileIndex].GetComponent<TileView>().setTileActivation(false);
+            tiles[tileIndex].GetComponent<TileView>().hoverTile(false);
         }
     }
 
@@ -56,15 +77,32 @@ public class GridView : MonoBehaviour
         isActive = true;
         for (int tileIndex = 0; tileIndex < tiles.Count; tileIndex++)
         {
-            tiles[tileIndex].GetComponent<TileView>().setDefaultTileMaterial(outlinedMaterial);
+            tiles[tileIndex].GetComponent<TileView>().setTileActivation(true);
+            tiles[tileIndex].GetComponent<TileView>().hoverTile(false);
         }
     }
 
     public void handleTileControl()
     {
-        for (int tileIndex = 0; tileIndex < tiles.Count; tileIndex++)
+        if (isActive)
         {
-            tiles[tileIndex].GetComponent<TileView>().handleMouseHover(isActive);
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.transform.gameObject.tag == "Tile" && tiles.Contains(hit.transform.gameObject))
+                {
+                    if (hit.transform != hoveredTile && hoveredTile != null)
+                    {
+                        hoveredTile.gameObject.GetComponent<TileView>().hoverTile(false);
+                    }
+                    hoveredTile = hit.transform;
+                    hoveredTile.gameObject.GetComponent<TileView>().hoverTile(true);
+
+                    if (Input.GetMouseButton(0))
+                        putFloor();
+                }
+            }
         }
     }
 }
