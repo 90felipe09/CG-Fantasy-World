@@ -131,6 +131,13 @@ public class GridView : MonoBehaviour
                     }
 
                 }
+                if (hit.transform.gameObject.tag != "Tile")
+                {    
+                    if (Input.GetMouseButton(1))
+                    {
+                        Destroy(hit.transform.gameObject);
+                    }
+                }
             }
         }
     }
