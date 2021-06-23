@@ -58,8 +58,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Material: {fileID: 2100000, guid: 64fe891d492807449a2efd1d042425c2, type: 2}
+  m_Color: {r: 0.27450982, g: 0.27450982, b: 0.27450982, a: 0.392}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -89,7 +89,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   options: []
-  floorMaterialsOptions: []
+  floorMaterialsOptions:
+  - {fileID: 0}
   floorPrefab: {fileID: 0}
   categoryHud: {fileID: 0}
   buttonPrefab: {fileID: 6055484094425578221, guid: a6a0b4132c5957044855626278b6d5e1, type: 3}

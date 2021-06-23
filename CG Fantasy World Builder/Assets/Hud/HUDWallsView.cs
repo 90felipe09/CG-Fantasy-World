@@ -31,7 +31,7 @@ public class HUDWallsView : MonoBehaviour
 
     private void selectWallToPut(GameObject wallOption)
     {
-        GameObject wallToPut = Instantiate(wallOption);
+        GameObject wallToPut = wallOption;
         userController.setWallToPut(wallToPut);
     }
 
