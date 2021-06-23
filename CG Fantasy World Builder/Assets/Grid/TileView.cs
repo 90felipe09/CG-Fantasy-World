@@ -14,6 +14,7 @@ public class TileView : MonoBehaviour
 
     [SerializeField] private GameObject floorOccupying;
     [SerializeField] private GameObject wallOnTile;
+    [SerializeField] private GameObject propOnTile;
 
     [SerializeField] private List<TileView> adjacentsTiles;
 
@@ -56,6 +57,18 @@ public class TileView : MonoBehaviour
         }
     }
 
+    public void occupyTileWithProp(GameObject propToPut, UserController.Direction dir)
+    {
+        if (wallOnTile == null && propOnTile == null)
+        {
+            var (propPosition, propRotation) = getPropPosRot(transform, dir);
+            propOnTile = Instantiate(propToPut, transform.position + propToPut.transform.position, propToPut.transform.rotation);
+            propOnTile.transform.parent = transform;
+            propOnTile.transform.RotateAround(transform.position, Vector3.up, propRotation.eulerAngles.y);
+
+        }
+    }
+
 
     public (Vector3 pos, Quaternion rot) getWallPosRot(Transform baseTransform, UserController.Direction dir)
     {
@@ -73,6 +86,25 @@ public class TileView : MonoBehaviour
                 throw new System.Exception("Invalid Direction");
         }
     }
+
+    public (Vector3 pos, Quaternion rot) getPropPosRot(Transform baseTransform, UserController.Direction dir)
+    {
+        switch (dir)
+        {
+            case UserController.Direction.LEFT:
+                return (baseTransform.position, baseTransform.rotation);
+            case UserController.Direction.RIGHT:
+                return (baseTransform.position, baseTransform.rotation * Quaternion.Euler(0, 180, 0));
+            case UserController.Direction.TOP:
+                return (baseTransform.position, baseTransform.rotation * Quaternion.Euler(0, 90, 0));
+            case UserController.Direction.BOTTOM:
+                return (baseTransform.position, baseTransform.rotation * Quaternion.Euler(0, 270, 0));
+            default:
+                throw new System.Exception("Invalid Direction");
+        }
+    }
+
+
     public void setWallOnTile(GameObject wall)
     {
         wallOnTile = wall;
