@@ -31,8 +31,8 @@ public class HUDPropsView : MonoBehaviour
 
     private void selectPropsToPut(GameObject propsOption)
     {
-        GameObject wallToPut = Instantiate(propsOption);
-        userController.setWallToPut(wallToPut);
+        GameObject propsToPut = propsOption;
+        userController.setPropsToPut(propsToPut);
     }
 
     private void addOption(GameObject optionToAdd)

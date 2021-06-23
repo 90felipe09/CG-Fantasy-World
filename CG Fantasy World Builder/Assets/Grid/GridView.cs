@@ -57,6 +57,16 @@ public class GridView : MonoBehaviour
         }
     }
 
+    public void putProp()
+    {
+        if (userController.getCurrentEditMode() == UserController.EditModeEnum.props)
+        {
+            GameObject propsToPut = userController.getPropsToPut();
+            if (propsToPut)
+                hoveredTile.gameObject.GetComponent<TileView>().occupyTileWithProp(propsToPut, userController.getCurrentPlacingDirection());
+        }
+    }
+
     private void mountGrid()
     {
         for (int tileIndex = 0; tileIndex < gridModel.layout.Count; tileIndex++)
@@ -128,6 +138,7 @@ public class GridView : MonoBehaviour
                     {
                         putFloor();
                         placeWall();
+                        putProp();
                     }
 
                 }
