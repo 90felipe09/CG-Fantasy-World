@@ -5,12 +5,11 @@ using UnityEngine;
 public class UserController : MonoBehaviour
 {
     [SerializeField] private GameObject floorToPut;
-    [SerializeField] private GameObject wallToPut;
-    [SerializeField] private GameObject propsToPut;
+    [SerializeField] private GameObject objToPut;
     [SerializeField] private EditModeEnum currentEditMode;
     [SerializeField] private Direction currentPlacingDirection = Direction.LEFT;
-    [SerializeField] private GameObject wallPreview;
-    [SerializeField] private Material currentPlacingMaterial;
+    [SerializeField] private GameObject baseObjectToPut;
+    [SerializeField] private GameObject previewObject;
     [SerializeField] private Material previewSucessMaterial;
     [SerializeField] private Material previewFailMaterial;
 
@@ -28,7 +27,7 @@ public class UserController : MonoBehaviour
     public void setCurrentEditMode (EditModeEnum newMode) 
     {
         currentEditMode = newMode;
-        destroyWallPreview();
+        destroyPreviews();
     }
 
     public void setFloorToPut(GameObject floorToPut)
@@ -38,13 +37,14 @@ public class UserController : MonoBehaviour
 
     public void setWallToPut(GameObject wallToPut)
     {
-        this.wallToPut = wallToPut;
-        instantiateWallPreview();
+        this.objToPut = wallToPut;
+        instantiatePreviewObj(wallToPut);
     }
 
     public void setPropsToPut(GameObject propsToPut)
     {
-        this.propsToPut = propsToPut;
+        this.objToPut = propsToPut;
+        instantiatePreviewObj(propsToPut);
     }
 
     public EditModeEnum getCurrentEditMode()
@@ -57,14 +57,9 @@ public class UserController : MonoBehaviour
         return floorToPut;
     }
 
-    public GameObject getWallToPut()
+    public GameObject getObjToPut()
     {
-        return wallToPut;
-    }
-
-    public GameObject getPropsToPut()
-    {
-        return propsToPut;
+        return objToPut;
     }
 
     public void putFloor(TileView hoveredTile)
@@ -77,40 +72,42 @@ public class UserController : MonoBehaviour
         }
     }
 
-    public void hoverWall(TileView hoveredTile)
+    private void setPlacementValidity(TileView hoveredTile)
     {
         if (getCurrentEditMode() == EditModeEnum.wall)
         {
-            if (wallPreview)
-                if (hoveredTile.isWallPlacementValid(WALLSIZE, getCurrentPlacingDirection()))
-                {
-                    setPlacingPreviewSucess();
-                }
-                else
-                {
-                    setPlacingPreviewFail();
-                }
-            hoveredTile.previewTileWithWall(wallPreview, wallToPut.transform.position, getCurrentPlacingDirection());
+            if (hoveredTile.isWallPlacementValid(WALLSIZE, getCurrentPlacingDirection()))
+            {
+                setPlacingPreviewSucess();
+            }
+            else
+            {
+                setPlacingPreviewFail();
+            }            
         }
     }
 
-    public void placeWall(TileView hoveredTile)
+    public void placeObj(TileView hoveredTile)
     {
+        GameObject objToPut = getObjToPut();
         if (getCurrentEditMode() == EditModeEnum.wall)
         {
-            GameObject wallToPut = getWallToPut();
-            if (wallToPut)
-                hoveredTile.occupyTileWithWall(wallToPut, WALLSIZE, getCurrentPlacingDirection());
+            hoveredTile.occupyTileWithWall(objToPut, WALLSIZE, getCurrentPlacingDirection());
         }
-    }
 
-    public void putProp(TileView hoveredTile)
-    {
         if (getCurrentEditMode() == EditModeEnum.props)
         {
-            GameObject propsToPut = getPropsToPut();
-            if (propsToPut)
-                hoveredTile.occupyTileWithProp(propsToPut, getCurrentPlacingDirection());
+            hoveredTile.occupyTileWithProp(objToPut, getCurrentPlacingDirection());
+        }
+    }
+
+
+    public void hoverPreview(TileView hoveredTile)
+    {
+        if (previewObject)
+        {
+            setPlacementValidity(hoveredTile);
+            hoveredTile.previewTileWithObj(previewObject, objToPut.transform.position, getCurrentPlacingDirection());
         }
     }
 
@@ -166,30 +163,42 @@ public class UserController : MonoBehaviour
         return currentPlacingDirection;
     }
 
-    public void setPlacingPreviewFail()
+    private void setPlacingPreviewFail()
     {
-        currentPlacingMaterial = previewFailMaterial;
-        wallPreview.GetComponent<Renderer>().material = currentPlacingMaterial;
+        setAllObjMaterials(previewObject, previewFailMaterial);
 
     }
 
-    public void setPlacingPreviewSucess()
+    private void setPlacingPreviewSucess()
     {
-        currentPlacingMaterial = previewSucessMaterial;
-        wallPreview.GetComponent<Renderer>().material = currentPlacingMaterial;
-
+        setAllObjMaterials(previewObject, previewSucessMaterial);
     }
 
-    public void instantiateWallPreview()
+    private void instantiatePreviewObj(GameObject objToPut)
     {
-        currentPlacingMaterial = previewSucessMaterial;
-        wallPreview = Instantiate(getWallToPut());
-        wallPreview.GetComponent<BoxCollider>().enabled = false;
-        wallPreview.GetComponent<Renderer>().material = currentPlacingMaterial;
+        previewObject = Instantiate(objToPut);
+        setPreviewDefaults(previewObject);
     }
 
-    public void destroyWallPreview()
+    private void setPreviewDefaults(GameObject previewObject)
     {
-        Destroy(wallPreview);
+        previewObject.GetComponent<BoxCollider>().enabled = false;
+        setPlacingPreviewSucess();
+    }
+
+    private void setAllObjMaterials(GameObject obj, Material material)
+    {
+        int materialsLength = obj.GetComponent<Renderer>().materials.Length;
+        Material[] newMaterials = new Material[materialsLength];
+        for (int i = 0; i < materialsLength; i++)
+        {
+            newMaterials[i] = material;
+        }
+        obj.GetComponent<Renderer>().materials = newMaterials;
+    }
+
+    public void destroyPreviews()
+    {
+        Destroy(previewObject);
     }
 }

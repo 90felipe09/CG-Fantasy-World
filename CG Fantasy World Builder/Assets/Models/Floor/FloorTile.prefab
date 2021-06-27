@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -6402549030572655348}
   m_Layer: 0
   m_Name: FloorTile
-  m_TagString: Untagged
+  m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0eaa58b00996ba943a7972a6e2e0d897, type: 2}
+  - {fileID: 2100000, guid: 5fcb2a85a6df7544da0618b3fcd8a143, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

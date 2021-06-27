@@ -47,7 +47,8 @@ public class GridView : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.transform.gameObject.tag == "Tile" && tiles.Contains(hit.transform.gameObject))
+                string tag = hit.transform.gameObject.tag;
+                if (tag == "Tile" && tiles.Contains(hit.transform.gameObject))
                 {
                     if (hit.transform != hoveredTile && hoveredTile != null)
                     {
@@ -56,13 +57,11 @@ public class GridView : MonoBehaviour
                     hoveredTile = hit.transform;
                     TileView hoveredTileView = hoveredTile.gameObject.GetComponent<TileView>();
                     hoveredTileView.hoverTile(true);
-
-                    userController.hoverWall(hoveredTileView);
+                    userController.hoverPreview(hoveredTileView);
                     if (Input.GetMouseButton(0))
                     {
                         userController.putFloor(hoveredTileView);
-                        userController.placeWall(hoveredTileView);
-                        userController.putProp(hoveredTileView);
+                        userController.placeObj(hoveredTileView);
                     }
 
                 }

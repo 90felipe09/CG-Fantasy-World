@@ -41,12 +41,12 @@ public class TileView : MonoBehaviour
         }
     }
 
-    public void previewTileWithWall(GameObject instantiatedWallToPreview, Vector3 initialPos, UserController.Direction dir)
+    public void previewTileWithObj(GameObject instantiatedObj, Vector3 initialPos, UserController.Direction dir)
     {
         var wallRotation = getObjRotation(transform, dir);
-        instantiatedWallToPreview.transform.position = initialPos + transform.position;
-        instantiatedWallToPreview.transform.rotation = transform.rotation;
-        instantiatedWallToPreview.transform.RotateAround(transform.position, Vector3.up, wallRotation.eulerAngles.y);
+        instantiatedObj.transform.position = initialPos + transform.position;
+        instantiatedObj.transform.rotation = transform.rotation;
+        instantiatedObj.transform.RotateAround(transform.position, Vector3.up, wallRotation.eulerAngles.y);
     }
 
     //TODO: Create wall model with wallSize
