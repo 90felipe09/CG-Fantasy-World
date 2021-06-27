@@ -18,6 +18,8 @@ public class GridView : MonoBehaviour
 
     private GridModel gridModel;
 
+    private GameObject wallPreview;
+
     [SerializeField] private UserController userController;
 
     void Start()
@@ -37,33 +39,40 @@ public class GridView : MonoBehaviour
         handleTileControl();
     }
 
-    public void putFloor()
-    {   
-        if (userController.getCurrentEditMode() == UserController.EditModeEnum.floor)
-        {
-            GameObject floorToPut = userController.getFloorToPut();
-            if (floorToPut)
-                hoveredTile.gameObject.GetComponent<TileView>().occupyTileWithFloor(floorToPut);
-        }
-    }
-
-    public void placeWall()
+    public void handleTileControl()
     {
-        if (userController.getCurrentEditMode() == UserController.EditModeEnum.wall)
+        if (isActive)
         {
-            GameObject wallToPut = userController.getWallToPut();
-            if (wallToPut)
-                hoveredTile.gameObject.GetComponent<TileView>().occupyTileWithWall(wallToPut, 4, userController.getCurrentPlacingDirection());
-        }
-    }
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hit))
+            {
+                string tag = hit.transform.gameObject.tag;
+                if (tag == "Tile" && tiles.Contains(hit.transform.gameObject))
+                {
+                    if (hit.transform != hoveredTile && hoveredTile != null)
+                    {
+                        hoveredTile.gameObject.GetComponent<TileView>().hoverTile(false);
+                    }
+                    hoveredTile = hit.transform;
+                    TileView hoveredTileView = hoveredTile.gameObject.GetComponent<TileView>();
+                    hoveredTileView.hoverTile(true);
+                    userController.hoverPreview(hoveredTileView);
+                    if (Input.GetMouseButton(0))
+                    {
+                        userController.putFloor(hoveredTileView);
+                        userController.placeObj(hoveredTileView);
+                    }
 
-    public void putProp()
-    {
-        if (userController.getCurrentEditMode() == UserController.EditModeEnum.props)
-        {
-            GameObject propsToPut = userController.getPropsToPut();
-            if (propsToPut)
-                hoveredTile.gameObject.GetComponent<TileView>().occupyTileWithProp(propsToPut, userController.getCurrentPlacingDirection());
+                }
+                if (hit.transform.gameObject.tag != "Tile")
+                {
+                    if (Input.GetMouseButton(1))
+                    {
+                        Destroy(hit.transform.gameObject);
+                    }
+                }
+            }
         }
     }
 
@@ -117,41 +126,7 @@ public class GridView : MonoBehaviour
             tile.setAdjacentsTiles(tilesSurround);
         }
     }
-    public void handleTileControl()
-    {
-        if (isActive)
-        {
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit))
-            {
-                if (hit.transform.gameObject.tag == "Tile" && tiles.Contains(hit.transform.gameObject))
-                {
-                    if (hit.transform != hoveredTile && hoveredTile != null)
-                    {
-                        hoveredTile.gameObject.GetComponent<TileView>().hoverTile(false);
-                    }
-                    hoveredTile = hit.transform;
-                    hoveredTile.gameObject.GetComponent<TileView>().hoverTile(true);
 
-                    if (Input.GetMouseButton(0))
-                    {
-                        putFloor();
-                        placeWall();
-                        putProp();
-                    }
-
-                }
-                if (hit.transform.gameObject.tag != "Tile")
-                {    
-                    if (Input.GetMouseButton(1))
-                    {
-                        Destroy(hit.transform.gameObject);
-                    }
-                }
-            }
-        }
-    }
 
     private TileView getAdjacentTileOrNull(int tileIndex, int adjacentIndex, int size, bool sameLine)
     {

@@ -41,14 +41,24 @@ public class TileView : MonoBehaviour
         }
     }
 
+    public void previewTileWithObj(GameObject instantiatedObj, Vector3 initialPos, UserController.Direction dir)
+    {
+        var wallRotation = getObjRotation(transform, dir);
+        instantiatedObj.transform.position = initialPos + transform.position;
+        instantiatedObj.transform.rotation = transform.rotation;
+        instantiatedObj.transform.RotateAround(transform.position, Vector3.up, wallRotation.eulerAngles.y);
+    }
+
+    //TODO: Create wall model with wallSize
     public void occupyTileWithWall(GameObject wallToPut, int wallSize, UserController.Direction dir)
     {
-        if (wallOnTile == null && adjacentsAreEmpty(wallSize, dir))
+        if (isWallPlacementValid(wallSize, dir))
         {
-            var (wallPosition, wallRotation) = getWallPosRot(transform, dir);
-            wallOnTile = Instantiate(wallToPut, wallPosition, wallRotation);
+            var wallRotation = getObjRotation(transform, dir);
+            wallOnTile = Instantiate(wallToPut, transform.position + wallToPut.transform.position, wallToPut.transform.rotation);
             wallOnTile.transform.parent = transform;
-            TileView nextTile = this.getNextTile(dir);
+            wallOnTile.transform.RotateAround(transform.position, Vector3.up, wallRotation.eulerAngles.y);
+            TileView nextTile = getNextTile(dir);
             for (int i = 1; i < wallSize; i++)
             {
                 nextTile.setWallOnTile(wallOnTile);
@@ -61,7 +71,7 @@ public class TileView : MonoBehaviour
     {
         if (wallOnTile == null && propOnTile == null)
         {
-            var (propPosition, propRotation) = getPropPosRot(transform, dir);
+            var propRotation = getObjRotation(transform, dir);
             propOnTile = Instantiate(propToPut, transform.position + propToPut.transform.position, propToPut.transform.rotation);
             propOnTile.transform.parent = transform;
             propOnTile.transform.RotateAround(transform.position, Vector3.up, propRotation.eulerAngles.y);
@@ -69,36 +79,23 @@ public class TileView : MonoBehaviour
         }
     }
 
-
-    public (Vector3 pos, Quaternion rot) getWallPosRot(Transform baseTransform, UserController.Direction dir)
+    public bool isWallPlacementValid(int wallSize, UserController.Direction dir)
     {
-        switch (dir)
-        {
-            case UserController.Direction.LEFT:
-                return (baseTransform.position + new Vector3(0, 2, 1.5f), baseTransform.rotation);
-            case UserController.Direction.RIGHT:
-                return (baseTransform.position + new Vector3(0, 2, -1.5f), baseTransform.rotation * Quaternion.Euler(0, 180, 0));
-            case UserController.Direction.TOP:
-                return (baseTransform.position + new Vector3(1.5f, 2, 0), baseTransform.rotation * Quaternion.Euler(0, 90, 0));
-            case UserController.Direction.BOTTOM:
-                return (baseTransform.position + new Vector3(-1.5f, 2, 0), baseTransform.rotation * Quaternion.Euler(0, 270, 0));
-            default:
-                throw new System.Exception("Invalid Direction");
-        }
+        return wallOnTile == null && adjacentsAreEmpty(wallSize, dir);
     }
 
-    public (Vector3 pos, Quaternion rot) getPropPosRot(Transform baseTransform, UserController.Direction dir)
+    private Quaternion getObjRotation(Transform baseTransform, UserController.Direction dir)
     {
         switch (dir)
         {
             case UserController.Direction.LEFT:
-                return (baseTransform.position, baseTransform.rotation);
+                return baseTransform.rotation;
             case UserController.Direction.RIGHT:
-                return (baseTransform.position, baseTransform.rotation * Quaternion.Euler(0, 180, 0));
+                return baseTransform.rotation * Quaternion.Euler(0, 180, 0);
             case UserController.Direction.TOP:
-                return (baseTransform.position, baseTransform.rotation * Quaternion.Euler(0, 90, 0));
+                return baseTransform.rotation * Quaternion.Euler(0, 90, 0);
             case UserController.Direction.BOTTOM:
-                return (baseTransform.position, baseTransform.rotation * Quaternion.Euler(0, 270, 0));
+                return baseTransform.rotation * Quaternion.Euler(0, 270, 0);
             default:
                 throw new System.Exception("Invalid Direction");
         }

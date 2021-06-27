@@ -49,4 +49,5 @@ MonoBehaviour:
   tiles: []
   outlinedMaterial: {fileID: 2100000, guid: a86e14deb364e1e49bb5948c5b0889fa, type: 2}
   defaultMaterial: {fileID: 2100000, guid: 6d728a9e83114b9449de6d9a31b5a506, type: 2}
+  previewSucessMaterial: {fileID: 15303, guid: 0000000000000000f000000000000000, type: 0}
   userController: {fileID: 0}
