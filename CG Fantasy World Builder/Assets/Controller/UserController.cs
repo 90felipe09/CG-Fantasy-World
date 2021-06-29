@@ -13,9 +13,6 @@ public class UserController : MonoBehaviour
     [SerializeField] private Material previewSucessMaterial;
     [SerializeField] private Material previewFailMaterial;
 
-    //TODO: will fix this by adding the wall model
-    private int WALLSIZE = 4;
-
 
     public enum EditModeEnum {position, floor, wall, props};
 
@@ -76,7 +73,8 @@ public class UserController : MonoBehaviour
     {
         if (getCurrentEditMode() == EditModeEnum.wall)
         {
-            if (hoveredTile.isWallPlacementValid(WALLSIZE, getCurrentPlacingDirection()))
+            int wallSize = objToPut.GetComponent<WallModel>().getSize();
+            if (hoveredTile.isWallPlacementValid(wallSize, getCurrentPlacingDirection()))
             {
                 setPlacingPreviewSucess();
             }
@@ -92,7 +90,8 @@ public class UserController : MonoBehaviour
         GameObject objToPut = getObjToPut();
         if (getCurrentEditMode() == EditModeEnum.wall)
         {
-            hoveredTile.occupyTileWithWall(objToPut, WALLSIZE, getCurrentPlacingDirection());
+            int wallSize = objToPut.GetComponent<WallModel>().getSize();
+            hoveredTile.occupyTileWithWall(objToPut, wallSize, getCurrentPlacingDirection());
         }
 
         if (getCurrentEditMode() == EditModeEnum.props)
@@ -107,7 +106,7 @@ public class UserController : MonoBehaviour
         if (previewObject)
         {
             setPlacementValidity(hoveredTile);
-            hoveredTile.previewTileWithObj(previewObject, objToPut.transform.position, getCurrentPlacingDirection());
+            hoveredTile.previewTileWithObj(previewObject, objToPut.transform, getCurrentPlacingDirection());
         }
     }
 
@@ -176,6 +175,7 @@ public class UserController : MonoBehaviour
 
     private void instantiatePreviewObj(GameObject objToPut)
     {
+        destroyPreviews();
         previewObject = Instantiate(objToPut);
         setPreviewDefaults(previewObject);
     }
