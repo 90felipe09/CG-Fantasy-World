@@ -11,6 +11,8 @@ public class GridSystem : MonoBehaviour
 
     [SerializeField] private float floorHeight = 3.0f;
 
+    [SerializeField] private UserController userController;
+
     private void Start()
     {
         instantiateGrids();
@@ -20,6 +22,7 @@ public class GridSystem : MonoBehaviour
     private void Update()
     {
         handleFloorNavigation();
+        handlePlacingRotation();
     }
 
     private void instantiateGrids()
@@ -29,6 +32,7 @@ public class GridSystem : MonoBehaviour
             GameObject grid = Instantiate(gridPrefab, transform);
             grid.transform.position += Vector3.up * floorHeight * floorIndex;
             grid.GetComponent<GridView>().setGridFloor(floorIndex);
+            grid.GetComponent<GridView>().setUserController(userController);
             grid.SetActive(false);
             gridFloors.Add(grid);
         }
@@ -71,6 +75,19 @@ public class GridSystem : MonoBehaviour
             {
                 showGrid(floorShowing + 1);
             }
+        }
+    }
+
+    private void handlePlacingRotation()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            userController.increasePlacingDirection();
+        }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            userController.decreasePlacingDirection();
         }
     }
 }
