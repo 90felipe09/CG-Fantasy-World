@@ -41,11 +41,11 @@ public class TileView : MonoBehaviour
         }
     }
 
-    public void previewTileWithObj(GameObject instantiatedObj, Vector3 initialPos, UserController.Direction dir)
+    public void previewTileWithObj(GameObject instantiatedObj, Transform initialTransform, UserController.Direction dir)
     {
         var wallRotation = getObjRotation(transform, dir);
-        instantiatedObj.transform.position = initialPos + transform.position;
-        instantiatedObj.transform.rotation = transform.rotation;
+        instantiatedObj.transform.position = initialTransform.position + transform.position;
+        instantiatedObj.transform.rotation = initialTransform.rotation;
         instantiatedObj.transform.RotateAround(transform.position, Vector3.up, wallRotation.eulerAngles.y);
     }
 

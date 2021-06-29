@@ -18,8 +18,6 @@ public class GridView : MonoBehaviour
 
     private GridModel gridModel;
 
-    private GameObject wallPreview;
-
     [SerializeField] private UserController userController;
 
     void Start()
