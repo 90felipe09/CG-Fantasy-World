@@ -647,16 +647,32 @@ PrefabInstance:
       objectReference: {fileID: 1028554478}
     - target: {fileID: 1737395471785020648, guid: b171c13ca5fb1f34db5ebbc1c8642e63, type: 3}
       propertyPath: wallsPrefabsOptions.Array.size
-      value: 2
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1737395471785020648, guid: b171c13ca5fb1f34db5ebbc1c8642e63, type: 3}
       propertyPath: wallsPrefabsOptions.Array.data[0]
       value: 
-      objectReference: {fileID: 2644054024936606642, guid: c7cdcd0db1631ee4ea3a24c09836a719, type: 3}
+      objectReference: {fileID: 8536190066982692979, guid: a0416d8af45cd074a932e6ca2025c96f, type: 3}
     - target: {fileID: 1737395471785020648, guid: b171c13ca5fb1f34db5ebbc1c8642e63, type: 3}
       propertyPath: wallsPrefabsOptions.Array.data[1]
       value: 
+      objectReference: {fileID: 5593715538417868140, guid: 8ee51b03ddf0b524f8988d8354904634, type: 3}
+    - target: {fileID: 1737395471785020648, guid: b171c13ca5fb1f34db5ebbc1c8642e63, type: 3}
+      propertyPath: wallsPrefabsOptions.Array.data[2]
+      value: 
       objectReference: {fileID: 4303928810920165353, guid: 736a8fa2d92a24c4a9dc87e0097a95de, type: 3}
+    - target: {fileID: 1737395471785020648, guid: b171c13ca5fb1f34db5ebbc1c8642e63, type: 3}
+      propertyPath: wallsPrefabsOptions.Array.data[3]
+      value: 
+      objectReference: {fileID: 5352748845237530620, guid: aafde6d8e87b36d4098b81505dbbb14d, type: 3}
+    - target: {fileID: 1737395471785020648, guid: b171c13ca5fb1f34db5ebbc1c8642e63, type: 3}
+      propertyPath: wallsPrefabsOptions.Array.data[4]
+      value: 
+      objectReference: {fileID: 7628755181472233045, guid: f6bfeda735521054192443f9abb5aaef, type: 3}
+    - target: {fileID: 1737395471785020648, guid: b171c13ca5fb1f34db5ebbc1c8642e63, type: 3}
+      propertyPath: wallsPrefabsOptions.Array.data[5]
+      value: 
+      objectReference: {fileID: 2644054024936606642, guid: c7cdcd0db1631ee4ea3a24c09836a719, type: 3}
     - target: {fileID: 3529309756700716433, guid: b171c13ca5fb1f34db5ebbc1c8642e63, type: 3}
       propertyPath: m_Name
       value: HUD_Walls
@@ -776,7 +792,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1988959416180088602, guid: dbec9c100dc5a5a4dbbbd63b01ececf9, type: 3}
       propertyPath: propsPrefabsOptions.Array.size
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1988959416180088602, guid: dbec9c100dc5a5a4dbbbd63b01ececf9, type: 3}
       propertyPath: propsPrefabsOptions.Array.data[0]
@@ -793,11 +809,19 @@ PrefabInstance:
     - target: {fileID: 1988959416180088602, guid: dbec9c100dc5a5a4dbbbd63b01ececf9, type: 3}
       propertyPath: propsPrefabsOptions.Array.data[3]
       value: 
-      objectReference: {fileID: 8622514032762626650, guid: f408bebf8ec4df545903c83ac383d75e, type: 3}
+      objectReference: {fileID: 6478073850878203188, guid: e748b2e0036be574b8b7d85a7e614ba1, type: 3}
     - target: {fileID: 1988959416180088602, guid: dbec9c100dc5a5a4dbbbd63b01ececf9, type: 3}
       propertyPath: propsPrefabsOptions.Array.data[4]
       value: 
       objectReference: {fileID: 4397787903485794673, guid: 17a19a9ac7ce7684997dc916417bfca2, type: 3}
+    - target: {fileID: 1988959416180088602, guid: dbec9c100dc5a5a4dbbbd63b01ececf9, type: 3}
+      propertyPath: propsPrefabsOptions.Array.data[5]
+      value: 
+      objectReference: {fileID: 8622514032762626650, guid: f408bebf8ec4df545903c83ac383d75e, type: 3}
+    - target: {fileID: 1988959416180088602, guid: dbec9c100dc5a5a4dbbbd63b01ececf9, type: 3}
+      propertyPath: propsPrefabsOptions.Array.data[6]
+      value: 
+      objectReference: {fileID: 746600196642111865, guid: 5246bb2020c80c044915db45c8364c12, type: 3}
     - target: {fileID: 5006267128242549200, guid: dbec9c100dc5a5a4dbbbd63b01ececf9, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1019,6 +1043,10 @@ PrefabInstance:
       propertyPath: floorMaterialsOptions.Array.data[5]
       value: 
       objectReference: {fileID: 2100000, guid: b2dce94a3a56ae047ad4fa7185462263, type: 2}
+    - target: {fileID: 5276912049997042731, guid: 910af132f053b0f4ab51387c38e07e2a, type: 3}
+      propertyPath: floorMaterialsOptions.Array.data[6]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5276912049997042735, guid: 910af132f053b0f4ab51387c38e07e2a, type: 3}
       propertyPath: m_Name
       value: HUD_Floors
