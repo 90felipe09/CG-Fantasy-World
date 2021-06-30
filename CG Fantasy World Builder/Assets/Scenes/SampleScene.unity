@@ -749,7 +749,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1988959416180088602, guid: dbec9c100dc5a5a4dbbbd63b01ececf9, type: 3}
       propertyPath: propsPrefabsOptions.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1988959416180088602, guid: dbec9c100dc5a5a4dbbbd63b01ececf9, type: 3}
       propertyPath: propsPrefabsOptions.Array.data[0]
@@ -767,6 +767,10 @@ PrefabInstance:
       propertyPath: propsPrefabsOptions.Array.data[3]
       value: 
       objectReference: {fileID: 8622514032762626650, guid: f408bebf8ec4df545903c83ac383d75e, type: 3}
+    - target: {fileID: 1988959416180088602, guid: dbec9c100dc5a5a4dbbbd63b01ececf9, type: 3}
+      propertyPath: propsPrefabsOptions.Array.data[4]
+      value: 
+      objectReference: {fileID: 4397787903485794673, guid: 17a19a9ac7ce7684997dc916417bfca2, type: 3}
     - target: {fileID: 5006267128242549200, guid: dbec9c100dc5a5a4dbbbd63b01ececf9, type: 3}
       propertyPath: m_Pivot.x
       value: 0
