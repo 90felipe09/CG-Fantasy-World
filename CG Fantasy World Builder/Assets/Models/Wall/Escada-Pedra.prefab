@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 784513972413887308}
   - component: {fileID: -6998916452109583798}
   m_Layer: 0
-  m_Name: Stone_Stairs
+  m_Name: Escada-Pedra
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

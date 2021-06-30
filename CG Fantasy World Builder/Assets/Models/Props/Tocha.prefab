@@ -578,7 +578,7 @@ GameObject:
   - component: {fileID: 3910184820809368523}
   - component: {fileID: 1516252070966964818}
   m_Layer: 0
-  m_Name: Torch
+  m_Name: Tocha
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

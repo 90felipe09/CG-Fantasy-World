@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -5674545797601422496}
   - component: {fileID: -5532568274628489936}
   m_Layer: 0
-  m_Name: wall-tiled-4
+  m_Name: Parede-4-Quadrados
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
