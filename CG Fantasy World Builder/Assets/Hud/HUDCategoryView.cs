@@ -38,9 +38,9 @@ public class HUDCategoryView : MonoBehaviour
         switch (index)
         {
             case (int) PalletesOptionsEnums.Floors:
-                return "Floors";
+                return "Chão";
             case (int) PalletesOptionsEnums.Walls:
-                return "Walls";
+                return "Estrutura";
             case (int) PalletesOptionsEnums.Props:
                 return "Props";
             default:

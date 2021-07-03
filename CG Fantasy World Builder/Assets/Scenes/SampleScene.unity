@@ -817,7 +817,7 @@ PrefabInstance:
     - target: {fileID: 1988959416180088602, guid: dbec9c100dc5a5a4dbbbd63b01ececf9, type: 3}
       propertyPath: propsPrefabsOptions.Array.data[5]
       value: 
-      objectReference: {fileID: 8622514032762626650, guid: f408bebf8ec4df545903c83ac383d75e, type: 3}
+      objectReference: {fileID: 5440996087514944891, guid: f408bebf8ec4df545903c83ac383d75e, type: 3}
     - target: {fileID: 1988959416180088602, guid: dbec9c100dc5a5a4dbbbd63b01ececf9, type: 3}
       propertyPath: propsPrefabsOptions.Array.data[6]
       value: 

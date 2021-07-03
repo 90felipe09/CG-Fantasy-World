@@ -69,7 +69,7 @@ public class TileView : MonoBehaviour
 
     public void occupyTileWithProp(GameObject propToPut, UserController.Direction dir)
     {
-        if (wallOnTile == null && propOnTile == null)
+        if (wallOnTile == null)
         {
             var propRotation = getObjRotation(transform, dir);
             propOnTile = Instantiate(propToPut, transform.position + propToPut.transform.position, propToPut.transform.rotation);
